@@ -60,12 +60,13 @@ module.exports = function(grunt) {
 				var render = parsed.template.render(options.data, partials);
 				if (grunt.file.isDir(f.dest)) {
 					grunt.file.write(f.dest + parsed.file, render);
+					grunt.log.writeln("Wrote file:" + f.dest + parsed.file);
 				} else {
 					//note this will overwrite for right now
 					//TODO: add concat or a concat flag
 					grunt.file.write(f.dest, render);
+					grunt.log.writeln("Wrote file:" + f.dest);
 				}
-				grunt.log.writeln("Wrote file:" + f.dest + parsed.file);
 			});
 
 		});
