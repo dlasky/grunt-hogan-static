@@ -58,7 +58,13 @@ module.exports = function(grunt) {
 
 			src.map(function(parsed) {
 				var render = parsed.template.render(options.data, partials);
-				grunt.file.write(f.dest + parsed.file, render);
+				if (grunt.file.isDir(f.dest)) {
+					grunt.file.write(f.dest + parsed.file, render);
+				} else {
+					//note this will overwrite for right now
+					//TODO: add concat or a concat flag
+					grunt.file.write(f.dest, render);
+				}
 				grunt.log.writeln("Wrote file:" + f.dest + parsed.file);
 			});
 
