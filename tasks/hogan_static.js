@@ -23,6 +23,14 @@ module.exports = function(grunt) {
 		}),
 		partials = {};
 
+		if ( typeof options.data === 'string' ) {
+            if ( grunt.file.exists( options.data ) ) {
+                options.data = JSON.parse( grunt.file.read( options.data ) );
+            } else {
+                grunt.log.warn( 'Data file ' + options.data + ' not found.' );
+            }
+		}
+
 		this.files.forEach(function(f) {
 
 			var src = f.src.filter(function(filepath) {
