@@ -72,6 +72,16 @@ module.exports = function(grunt) {
                 files: {
                     'tmp/': [ 'test/fixtures/simple.html', 'test/fixtures/array.html' ]
                 }
+			},
+			useExtension: {
+			    options: {
+			        data: {
+			            items: [ 'a', 'b', 'c' ]
+                    }
+			    },
+			    files: {
+			        'tmp/': [ 'test/fixtures/array.hjs' ]
+			    }
 			}
 		},
 
