@@ -25,17 +25,20 @@ In your project's Gruntfile, add a section named `hogan_static` to the data obje
 ```js
 grunt.initConfig({
   hogan_static: {
-	options: {
+    all: {
+	  options: {
 		data: {
 			items: ["a", "b", "c"],
 			title: 'title test',
 			body: 'body test'
 		},
-		usePartials: false
-	},
-	files: {
+	    usePartials: false
+	  },
+	  files: {
 		'tmp/': ['test/fixtures/simple.html','test/fixtures/array.html'],
-	},
+	  },
+    }
+  }
 });
 ```
 
@@ -45,7 +48,9 @@ grunt.initConfig({
 Type: `Object`
 Default value: `undefined`
 
-JSON object data to pass to hogan for templating
+JSON object data to pass to hogan for templating.
+
+A string can be passed to `options.data` specifying the path to a json file to use as data.
 
 #### options.usePartials
 Type: `Boolean`
