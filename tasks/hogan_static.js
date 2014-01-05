@@ -19,9 +19,18 @@ module.exports = function(grunt) {
 			data: {},
 			usePartials: false,
 			//delimiters:'{{ }}',
-			disableLambda: false
+			disableLambda: false,
+			useExt: 'html'
 		}),
 		partials = {};
+
+		if ( typeof options.data === 'string' ) {
+            if ( grunt.file.exists( options.data ) ) {
+                options.data = JSON.parse( grunt.file.read( options.data ) );
+            } else {
+                grunt.log.warn( 'Data file ' + options.data + ' not found.' );
+            }
+		}
 
 		this.files.forEach(function(f) {
 
@@ -59,8 +68,9 @@ module.exports = function(grunt) {
 			src.map(function(parsed) {
 				var render = parsed.template.render(options.data, partials);
 				if (grunt.file.isDir(f.dest)) {
-					grunt.file.write(f.dest + parsed.file, render);
-					grunt.log.writeln("Wrote file:" + f.dest + parsed.file);
+					var filename = ( parsed.file.substr(0, parsed.file.lastIndexOf('.')) || parsed.file ) + '.' + options.useExt;
+					grunt.file.write(f.dest + filename, render);
+					grunt.log.writeln("Wrote file:" + f.dest + filename);
 				} else {
 					//note this will overwrite for right now
 					//TODO: add concat or a concat flag

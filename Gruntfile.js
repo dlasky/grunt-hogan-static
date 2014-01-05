@@ -65,6 +65,24 @@ module.exports = function(grunt) {
 					'tmp/':['test/fixtures/delimiters.html'],
 				},
 			},
+			jsondata: {
+                options: {
+                    data: 'test/fixtures/jsondata.json'
+                },
+                files: {
+                    'tmp/': [ 'test/fixtures/simple.html', 'test/fixtures/array.html' ]
+                }
+			},
+			useExtension: {
+			    options: {
+			        data: {
+			            items: [ 'a', 'b', 'c' ]
+                    }
+			    },
+			    files: {
+			        'tmp/': [ 'test/fixtures/array.hjs' ]
+			    }
+			}
 		},
 
 		// Unit tests.
@@ -84,7 +102,7 @@ module.exports = function(grunt) {
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'hogan_static', 'nodeunit']);
+	grunt.registerTask('test', ['hogan_static', 'nodeunit', 'clean']);
 
 	// By default, lint and run all tests.
 	//grunt.registerTask('default', ['jshint', 'test']);
