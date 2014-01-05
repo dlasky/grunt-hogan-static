@@ -65,6 +65,14 @@ module.exports = function(grunt) {
 					'tmp/':['test/fixtures/delimiters.html'],
 				},
 			},
+			jsondata: {
+                options: {
+                    data: 'test/fixtures/jsondata.json'
+                },
+                files: {
+                    'tmp/': [ 'test/fixtures/simple.html', 'test/fixtures/array.html' ]
+                }
+			}
 		},
 
 		// Unit tests.
