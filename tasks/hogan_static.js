@@ -67,8 +67,12 @@ module.exports = function(grunt) {
 
 			src.map(function(parsed) {
 				var render = parsed.template.render(options.data, partials);
+				var filename = ( parsed.file.substr(0, parsed.file.lastIndexOf('.')) || parsed.file ) + '.' + options.useExt;
+				// ensure directory exists
+				if ( f.dest.match(/\/$/) && !fs.existsSync( f.dest ) ) {
+				    fs.mkdirSync( f.dest );
+				}
 				if (grunt.file.isDir(f.dest)) {
-					var filename = ( parsed.file.substr(0, parsed.file.lastIndexOf('.')) || parsed.file ) + '.' + options.useExt;
 					grunt.file.write(f.dest + filename, render);
 					grunt.log.writeln("Wrote file:" + f.dest + filename);
 				} else {
