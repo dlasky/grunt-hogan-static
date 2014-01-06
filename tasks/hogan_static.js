@@ -9,7 +9,8 @@
 'use strict';
 
 var hogan = require('hogan.js'),
-	path = require('path');
+	path = require('path'),
+	fs = require( 'fs' );
 
 module.exports = function(grunt) {
 
