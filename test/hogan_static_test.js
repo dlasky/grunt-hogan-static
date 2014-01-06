@@ -28,7 +28,7 @@ exports.hogan_static = {
 		done();
 	},
 	default_options: function(test) {
-		test.expect(1);
+		test.expect(2);
 
 		var actual = grunt.file.read('tmp/simple.html'),
 			expected = grunt.file.read('test/expected/simple.html');
