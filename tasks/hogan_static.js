@@ -54,8 +54,8 @@ module.exports = function(grunt) {
 					template = hogan.compile( grunt.file.read(filepath), opts );
 
 				if (options.usePartials) {
-					name = path.basename(f.src).split(".")[0];
-					partials[name] = template;
+					name = path.basename(filepath).split(".")[0];
+					partials[name] = template.text;
 				}
 
 				return {
