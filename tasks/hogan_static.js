@@ -10,7 +10,8 @@
 
 var hogan = require('hogan.js'),
 	path = require('path'),
-	fs = require( 'fs' );
+	fs = require('fs'),
+	mkdirp = require('mkdirp');
 
 module.exports = function(grunt) {
 
@@ -76,8 +77,8 @@ module.exports = function(grunt) {
 				var render = parsed.template.render(options.data, partials);
 				var filename = ( parsed.file.substr(0, parsed.file.lastIndexOf( '.' )) || parsed.file ) + '.' + options.useExt;
 				// ensure directory exists
-				if ( f.dest.match( /\/$/ ) && !fs.existsSync( f.dest ) ) {
-				    fs.mkdirSync( f.dest );
+				if ( f.dest.match(/\/$/) && !fs.existsSync( f.dest ) ) {
+				    mkdirp.sync( f.dest );
 				}
                 // only write if we should
                 if ( ( filename.match( /^_/ ) && options.writePartials ) ||
