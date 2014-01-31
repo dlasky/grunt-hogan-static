@@ -36,6 +36,7 @@ grunt.initConfig({
 	files: {
 		'tmp/': ['test/fixtures/simple.html','test/fixtures/array.html'],
 	},
+  }
 });
 ```
 
