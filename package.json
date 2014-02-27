@@ -1,7 +1,7 @@
 {
   "name": "grunt-hogan-static",
   "description": "compile static templates using hogan.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/dlasky/grunt-hogan-static",
   "author": {
     "name": "Dan Lasky"
@@ -27,7 +27,8 @@
     "test": "grunt test"
   },
   "dependencies":{
-  	"hogan.js":"*"
+  	"hogan.js":"*",
+    "object-extend":"*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",

@@ -9,7 +9,8 @@
 'use strict';
 
 var hogan = require('hogan.js'),
-	path = require('path');
+	path = require('path'),
+	extend = require('object-extend');
 
 module.exports = function(grunt) {
 
@@ -21,7 +22,41 @@ module.exports = function(grunt) {
 			//delimiters:'{{ }}',
 			disableLambda: false
 		}),
-		partials = {};
+		partials = {},
+		partialsList = [],
+		dataList = [];
+
+		if (typeof options.usePartials === "string") {
+			partialsList = grunt.file.expand(options.usePartials);
+			partialsList.forEach( function(partial) {
+				var name, 
+					template;
+
+				if (!grunt.file.exists(partial)) {
+					grunt.log.warn('Source file "' + partial + '" not found.');
+				} else {
+					template = hogan.compile( grunt.file.read(partial) );
+					name = path.basename(partial).split(".")[0];
+					partials[name] = template;
+				}
+			});
+		}
+
+		if (typeof options.data === "string") {
+			dataList = grunt.file.expand(options.data);
+			options.data = {};
+			dataList.forEach(function(dataFile) {
+				var tempData;
+				if (!grunt.file.exists(dataFile)) {
+					grunt.log.warn('Source file "' + dataFile + '" not found.');
+				} else {
+					tempData = grunt.file.readJSON(dataFile);
+					extend(options.data, tempData);
+				}
+			});
+		}
+
+		console.dir(options.data);
 
 		this.files.forEach(function(f) {
 
@@ -44,8 +79,8 @@ module.exports = function(grunt) {
 					render = "",
 					template = hogan.compile( grunt.file.read(filepath), opts );
 
-				if (options.usePartials) {
-					name = path.basename(f.src).split(".")[0];
+				if (options.usePartials && typeof options.usePartials !== "string") {
+					name = path.basename(filepath).split(".")[0];
 					partials[name] = template;
 				}
 
@@ -58,14 +93,12 @@ module.exports = function(grunt) {
 
 			src.map(function(parsed) {
 				var render = parsed.template.render(options.data, partials);
-				if (grunt.file.isDir(f.dest)) {
-					grunt.file.write(f.dest + parsed.file, render);
-					grunt.log.writeln("Wrote file:" + f.dest + parsed.file);
-				} else {
-					//note this will overwrite for right now
-					//TODO: add concat or a concat flag
+				if (path.dirname(f.dest) === path.dirname(f.dest + "*")) {
 					grunt.file.write(f.dest, render);
 					grunt.log.writeln("Wrote file:" + f.dest);
+				} else {
+					grunt.file.write(f.dest + parsed.file, render);
+					grunt.log.writeln("Wrote file:" + f.dest + parsed.file);
 				}
 			});
 

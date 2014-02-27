@@ -45,13 +45,35 @@ module.exports = function(grunt) {
 			},
 			partials: {
 				options: {
-					title:'title test',
-					body:'body test',
+					data: {
+						title:'title test',
+						body:'body test'
+					},
 					usePartials: true,
 				},
 				files: {
 					'tmp/':['test/fixtures/simple.html','test/fixtures/partials.html'],
 				},
+			},
+			partialsList: {
+				options: {
+					data: {
+						title:'title test',
+						body:'body test',
+					},
+					usePartials:'test/fixtures/simple.html'
+				},
+				files: {
+					'tmp/':['test/fixtures/extPartials.html'],
+				},
+			},
+			jsonData: {
+				options: {
+					data:'test/fixtures/data.json'
+				},
+				files: {
+					'tmp/extJSON.html':'test/fixtures/simple.html'
+				}
 			},
 			delimiters: {
 				options: {
@@ -87,7 +109,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('test', ['clean', 'hogan_static', 'nodeunit']);
 
 	// By default, lint and run all tests.
-	//grunt.registerTask('default', ['jshint', 'test']);
-	grunt.registerTask('default', ['hogan_static']);
+	grunt.registerTask('default', ['jshint', 'test']);
 
 };

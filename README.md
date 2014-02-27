@@ -43,16 +43,16 @@ grunt.initConfig({
 ### Options
 
 #### options.data
-Type: `Object`
+Type: `Object` or `String`
 Default value: `undefined`
 
-JSON object data to pass to hogan for templating
+JSON object data to pass to hogan for templating. If data is passed as a string (including grunt expansion) JSON will be read and stuffed into options.data. note that subsequent json will overwrite any existing keys
 
 #### options.usePartials
-Type: `Boolean`
+Type: `Boolean` or `String`
 Default value: `false`
 
-A Boolean that tells the task to cache discovered templates for use as partials
+A Boolean that tells the task to cache discovered templates for use as partials. If the value is a string this is treated as a file path (including grunt expansion) to search for partials. In this use case it is assumed that files on the regular file path are NOT partials.
 
 #### options.delimiters
 Type: `String`
@@ -67,4 +67,4 @@ _a word of caution: this string is still subject to grunt templating so usage of
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+* 0.1.2 - fixed some issues with output paths. added external JSON support for data. added separate partial dir support.
