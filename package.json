@@ -1,7 +1,7 @@
 {
   "name": "grunt-hogan-static",
   "description": "compile static templates using hogan.js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://github.com/dlasky/grunt-hogan-static",
   "author": {
     "name": "Dan Lasky"
