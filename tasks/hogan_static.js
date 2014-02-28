@@ -75,6 +75,7 @@ module.exports = function(grunt) {
 					},
 					name = "",
 					render = "",
+					file = "",
 					template = hogan.compile( grunt.file.read(filepath), opts );
 
 				if (options.usePartials && typeof options.usePartials !== "string") {
@@ -82,8 +83,10 @@ module.exports = function(grunt) {
 					partials[name] = template;
 				}
 
+				file = options.outputExt ? path.basename(filepath).split(".")[0] + options.outputExt : path.basename(filepath);
+
 				return {
-					file: path.basename(filepath),
+					file: file,
 					template: template
 				};
 

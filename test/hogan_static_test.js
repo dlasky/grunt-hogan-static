@@ -76,5 +76,15 @@ exports.hogan_static = {
 		test.equal(actual, expected, 'should properly handle delimiter change.');
 
 		test.done();
+	},
+
+	outputExt: function(test) {
+		test.expect(1);
+
+		var actual = grunt.file.read('tmp/outputExt.html'),
+			expected = grunt.file.read('test/expected/simple.html');
+		test.equal(actual, expected, 'should properly handle output extension.');
+
+		test.done();
 	}
 };
