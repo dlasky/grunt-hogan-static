@@ -62,6 +62,11 @@ A String value that can be used to override the default hogan.js mustache style 
 
 _a word of caution: this string is still subject to grunt templating so usage of <% %> is strongly discouraged_
 
+#### options.outputExt
+Type: `String`
+Default value: `''`
+
+A String value that overrides the template file's extension for output when the output is specified as a directory.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
