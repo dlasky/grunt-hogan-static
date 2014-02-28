@@ -56,8 +56,6 @@ module.exports = function(grunt) {
 			});
 		}
 
-		console.dir(options.data);
-
 		this.files.forEach(function(f) {
 
 			var src = f.src.filter(function(filepath) {
