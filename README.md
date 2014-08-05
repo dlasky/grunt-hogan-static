@@ -24,19 +24,21 @@ In your project's Gruntfile, add a section named `hogan_static` to the data obje
 
 ```js
 grunt.initConfig({
-  hogan_static: {
-	options: {
-		data: {
-			items: ["a", "b", "c"],
-			title: 'title test',
-			body: 'body test'
-		},
-		usePartials: false
-	},
-	files: {
-		'tmp/': ['test/fixtures/simple.html','test/fixtures/array.html'],
-	},
-  }
+    hogan_static: {
+        target: {
+            options: {
+                data: {
+                    items: ["a", "b", "c"],
+                    title: 'title test',
+                    body: 'body test'
+                },
+                usePartials: false
+            },
+            files: {
+                'tmp/': ['test/fixtures/simple.html','test/fixtures/array.html'],
+            },
+        }
+    }
 });
 ```
 
