@@ -74,4 +74,5 @@ A String value that overrides the template file's extension for output when the 
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.1.6 - added support for delimiters and lambda exceptions in partials (thanks SethTippetts)
 * 0.1.2 - fixed some issues with output paths. added external JSON support for data. added separate partial dir support.
