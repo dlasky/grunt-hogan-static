@@ -35,7 +35,10 @@ module.exports = function(grunt) {
 				if (!grunt.file.exists(partial)) {
 					grunt.log.warn('Source file "' + partial + '" not found.');
 				} else {
-					template = hogan.compile( grunt.file.read(partial) );
+					template = hogan.compile( grunt.file.read(partial), {
+						delimiters: options.delimiters,
+						disableLambda: options.disableLambda	
+					});
 					name = path.basename(partial).split(".")[0];
 					partials[name] = template;
 				}
