@@ -40,6 +40,8 @@
     "grunt": "~0.4.1"
   },
   "keywords": [
-    "gruntplugin hogan.js static"
+    "gruntplugin",
+    "hogan.js",
+    "static"
   ]
 }
