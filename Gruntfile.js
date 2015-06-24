@@ -87,18 +87,6 @@ module.exports = function(grunt) {
 					'tmp/':['test/fixtures/delimiters.html'],
 				},
 			},
-			outputExt: {
-				options: {
-					data:{
-						title:'title test',
-						body:'body test',
-					},
-					outputExt:'.html'
-				},
-				files: {
-					'tmp/': ['test/fixtures/outputExt.hjs']
-				}
-			}
 		},
 
 		// Unit tests.
