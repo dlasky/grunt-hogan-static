@@ -19,6 +19,7 @@ module.exports = function(grunt) {
 		var options = this.options({
 			data: {},
 			usePartials: false,
+			perFileData:false,
 			//delimiters:'{{ }}',
 			disableLambda: false
 		}),
@@ -93,7 +94,9 @@ module.exports = function(grunt) {
 			});
 
 			src.map(function(parsed) {
-				var render = parsed.template.render(options.data, partials);
+				var ext = path.extname(parsed.file);
+				var data = options.perFileData ? options.data[parsed.file.split(ext).join("")] : options.data;
+				var render = parsed.template.render(data, partials);
 				if (path.dirname(f.dest) === path.dirname(f.dest + "*")) {
 					grunt.file.write(f.dest, render);
 					grunt.log.writeln("Wrote file:" + f.dest);

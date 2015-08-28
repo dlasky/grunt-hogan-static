@@ -64,16 +64,17 @@ A String value that can be used to override the default hogan.js mustache style 
 
 _a word of caution: this string is still subject to grunt templating so usage of <% %> is strongly discouraged_
 
-#### options.outputExt
-Type: `String`
-Default value: `''`
+#### options.perFileData
+Type: `Boolean`
+Default value: `false`
 
-A String value that overrides the template file's extension for output when the output is specified as a directory.
+A Boolean that treats the data object as a hash that should be iterated over using the current filename minus its extension `test.html => data[test] = {}`. This allows for multiple templates to use different defined data in a single template pass.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.3.0 - added support for 'keyed' data object to allow for per file rendering
 * 0.2.0 - reverted support for output extensions in favor of using grunt's native support
 * 0.1.6 - added support for delimiters and lambda exceptions in partials (thanks SethTippetts)
 * 0.1.2 - fixed some issues with output paths. added external JSON support for data. added separate partial dir support.

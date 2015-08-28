@@ -76,5 +76,23 @@ exports.hogan_static = {
 		test.equal(actual, expected, 'should properly handle delimiter change.');
 
 		test.done();
+	},
+
+	perFileData: function(test) {
+		test.expect(3);
+
+		var actual = grunt.file.read('tmp/test1.html'),
+			expected = grunt.file.read('test/expected/test1.html');
+		test.equal(actual, expected, 'should properly handle per file data');
+
+		actual = grunt.file.read('tmp/test2.html');
+		expected = grunt.file.read('test/expected/test2.html');
+		test.equal(actual, expected, 'should properly handle per file data');
+
+		actual = grunt.file.read('tmp/test3.html');
+		expected = grunt.file.read('test/expected/test3.html');
+		test.equal(actual, expected, 'should properly handle per file data');
+
+		test.done();
 	}
 };

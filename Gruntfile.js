@@ -87,6 +87,22 @@ module.exports = function(grunt) {
 					'tmp/':['test/fixtures/delimiters.html'],
 				},
 			},
+			perFileData:{
+				options:{
+					data:{
+						'test1':{a:"a"},
+						'test2':{b:"b"},
+						'test3':{c:"c"},
+					},
+					perFileData:true
+				},
+				files:[{
+					expand:true,
+					cwd:"test/fixtures/",
+					src:["test*.html"],
+					dest:"tmp/"
+				}]
+			}
 		},
 
 		// Unit tests.
